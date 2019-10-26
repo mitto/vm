@@ -1,2 +1,49 @@
 ---
 # tasks file for common
+- name: update all packages
+  dnf:
+    name: "*"
+    state: latest
+  become: yes
+
+- name: install additional repository packages
+  dnf:
+    name: epel-release
+  become: yes
+
+- name: install system packages
+  dnf:
+    name:
+      - glibc-langpack-ja
+  become: yes
+
+- name: install container packages
+  dnf:
+    name:
+      - podman-docker
+      - buildah
+      - skopeo
+      - runc
+  become: yes
+
+- name: install basic build tool and headers
+  dnf:
+    name:
+      - gcc
+      - gcc-c++
+      - make
+      - kernel-devel
+  become: yes
+
+- name: install monitoring tools
+  dnf:
+    name:
+      - htop
+  become: true
+
+- name: install dev tools
+  dnf:
+    name:
+      - vim-enhanced
+      - git
+  become: yes
