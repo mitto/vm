@@ -45,5 +45,9 @@ Vagrant.configure("2") do |config|
 
   config.vm.provision "ansible" do |ansible|
     ansible.playbook = "dev.yml"
+    ansible.raw_arguments = [
+      "--diff",
+      "-vv",
+    ]
   end
 end
